@@ -1,7 +1,6 @@
 name: CI
 
 on: push
-# Roda em qualquer push, em qualquer branch (incluindo cypress-ci)
 
 jobs:
   build-test:
@@ -11,14 +10,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  
+          cache: 'npm'      
+
+      - name: Install dependencies
+        run: npm ci              
+
       - name: Cypress Tests ⚙️
         uses: cypress-io/github-action@v6
         with:
           start: npm run dev
           build: npm run build
+          wait-on: 'http://localhost:3000'      
+          wait-on-timeout: 120                  
 
       - name: Upload Cypress Artifacts
-        if: always()  
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Cypress Results
