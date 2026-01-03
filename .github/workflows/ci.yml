@@ -24,7 +24,7 @@ jobs:
         with:
           start: npm run dev
           build: npm run build
-          wait-on: 'http://localhost:3000'      
+          wait-on: 'localhost:5173/
           wait-on-timeout: 120                  
 
       - name: Upload Cypress Artifacts
