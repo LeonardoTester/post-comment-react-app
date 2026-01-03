@@ -1,5 +1,5 @@
 import CommentPost from "./page-object/UserComment"
-import BoxProfile from "./page-object/ProfileBox"
+import BoxProfile from "./page-object/profilebox"
 
 const commentPost = new CommentPost()
 const boxUser = new BoxProfile()
