@@ -20,5 +20,5 @@ jobs:
               name: Cypress Result
               path: |
                   cypress/screeshots
-                  cypress/videosgi
+                  cypress/videos
     
