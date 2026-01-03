@@ -1,24 +1,25 @@
 name: CI
 
 on: [push]
-jobs: 
-     build-test:
-        runs-on: ubuntu-20.04
-        steps:
-            
-          - Name: Checkout
-            uses: actions/checkout@v3
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
 
-          - name: Cypress Tests ⚙️
-          - uses: cypress.io/github-actions@v5
-            with:
-              start: 'npm run dev'
-              build: 'npm run build'
-          - uses: actions/uploud-artifact@v3
-            if: always()
-            with:
-              name: Cypress Result
-              path: |
-                  cypress/screeshots
-                  cypress/videos
-    
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cypress Tests ⚙️
+        uses: cypress-io/github-action@v6
+        with:
+          start: 'npm run dev'
+          build: 'npm run build'
+
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Cypress Result
+          path: |
+            cypress/screenshots
+            cypress/videos
+            cypress/results
